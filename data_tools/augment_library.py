@@ -15,6 +15,11 @@ BRICS 重组天然能拼出更大的分子，因此可以补足 MOSES 偏窄（2
 
 from __future__ import annotations
 
+import os as _os
+import sys as _sys
+
+_sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", "molgrpo"))
+
 import argparse
 import csv
 import random

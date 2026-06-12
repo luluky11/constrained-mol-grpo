@@ -39,7 +39,7 @@ run_grpo b_gen    2 4000 1 8 &
 run_grpo b_data   3 8000 1 4 &
 wait
 echo "=== BUDGET CALIBRATION (none, library_v2) ===" | tee logs/table_budget.md
-python molgrpo/compare_results.py outputs/eval_b_anchor_greedy.json outputs/eval_b_epoch_greedy.json outputs/eval_b_gen_greedy.json outputs/eval_b_data_greedy.json 2>/dev/null | tee -a logs/table_budget.md
+python analysis/compare_results.py outputs/eval_b_anchor_greedy.json outputs/eval_b_epoch_greedy.json outputs/eval_b_gen_greedy.json outputs/eval_b_data_greedy.json 2>/dev/null | tee -a logs/table_budget.md
 echo "--- best-of-8 ---" | tee -a logs/table_budget.md
-python molgrpo/compare_results.py outputs/eval_b_anchor_bo8.json outputs/eval_b_epoch_bo8.json outputs/eval_b_gen_bo8.json outputs/eval_b_data_bo8.json 2>/dev/null | tee -a logs/table_budget.md
+python analysis/compare_results.py outputs/eval_b_anchor_bo8.json outputs/eval_b_epoch_bo8.json outputs/eval_b_gen_bo8.json outputs/eval_b_data_bo8.json 2>/dev/null | tee -a logs/table_budget.md
 echo "BUDGET_DONE $(date)" | tee -a logs/table_budget.md

@@ -91,22 +91,32 @@ SMILES
 ## Repo layout
 
 ```
-molgrpo/
-  chem_utils.py          # properties, SMARTS, derive_constraints, scoring, prompt rendering
-  dataset.py             # build training prompts by reverse-deriving constraints
-  rewards.py             # all reward functions (RDKit-based)
-  train_sft_warmup.py    # SFT warm-start (constraint -> molecule + CoT style)
-  train_grpo.py          # GRPO training entrypoint
-  evaluate.py / infer.py # batch eval (valid / property / structural / all-ok / diversity) and demo
-  cot.py                 # CoT-style generators (none/short/structured/constructive/budget)
-  build_library.py       # build a balanced real library from MOSES
-  augment_library.py     # BRICS recombination to extend the library
+molgrpo/                 # core library + training/eval entrypoints
+  chem_utils.py          #   properties, SMARTS, derive_constraints, scoring, prompt rendering
+  dataset.py             #   build training prompts by reverse-deriving constraints
+  rewards.py             #   all reward functions (RDKit-based)
+  cot.py                 #   CoT-style generators (none/short/structured/constructive/budget)
+  train_sft_warmup.py    #   SFT warm-start (constraint -> molecule + CoT style)
+  train_grpo.py          #   GRPO training entrypoint
+  evaluate.py / infer.py #   batch eval (valid/property/structural/all-ok/diversity) and demo
+  iterative_refine.py    #   inference-time RDKit-feedback refinement
+data_tools/              # dataset construction
+  build_library.py       #   balanced real library from MOSES
+  augment_library.py     #   BRICS recombination to extend the library
+  build_library_chembl.py#   wide-MolWt all-real library from ChEMBL
+analysis/                # result aggregation & analysis
+  compare_results.py     #   eval JSONs -> comparison tables
+  analyze_1p5b.py / analyze_window_density.py
+experiments/
   gsm8k_grpo.py          # cross-domain control: CoT vs direct on GSM8K
-  run_*.sh               # experiment orchestration (CoT comparison, difficulty, etc.)
+scripts/                 # shell orchestration (run_*.sh: CoT comparison, difficulty, ...)
 report/
   findings_zh.md         # detailed write-up (Chinese)
 requirements.txt
 ```
+
+> Run shell scripts and tools from the repo root (e.g. `bash scripts/run_cot_v2.sh`), so the
+> relative paths inside resolve correctly.
 
 > Note: the Gemini-distilled CoT generator depends on internal tooling and is omitted from
 > this public repo; the `gemini` row above was produced with it.
@@ -117,10 +127,10 @@ requirements.txt
 pip install -r requirements.txt   # transformers==4.51.3, trl==0.17.0, datasets, rdkit, torch
 
 # 1) build a real library from MOSES (download dataset_v1.csv first)
-python molgrpo/build_library.py --src data/moses.csv --out data/library.csv \
+python data_tools/build_library.py --src data/moses.csv --out data/library.csv \
   --target 10000 --reinforce 1000 --bucket_slack 1500 --max_scan 400000
 # 2) BRICS augmentation
-python molgrpo/augment_library.py --src data/library.csv --out data/library_aug.csv --target 20000
+python data_tools/augment_library.py --src data/library.csv --out data/library_aug.csv --target 20000
 # 3) SFT warm-start
 python molgrpo/train_sft_warmup.py --model_name_or_path Qwen/Qwen2.5-1.5B-Instruct \
   --output_dir outputs/sft --library_path data/library_aug.csv --n_samples 8000

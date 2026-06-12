@@ -70,12 +70,12 @@ cell db_t4 budget ${SFTB} t4 3 &
 wait
 
 echo "=== DIFFICULTY greedy (none vs budget, 四档) ===" | tee logs/table_difficulty.md
-python molgrpo/compare_results.py outputs/eval_dn_t1_greedy.json outputs/eval_db_t1_greedy.json \
+python analysis/compare_results.py outputs/eval_dn_t1_greedy.json outputs/eval_db_t1_greedy.json \
   outputs/eval_dn_t2_greedy.json outputs/eval_db_t2_greedy.json \
   outputs/eval_dn_t3_greedy.json outputs/eval_db_t3_greedy.json \
   outputs/eval_dn_t4_greedy.json outputs/eval_db_t4_greedy.json 2>/dev/null | tee -a logs/table_difficulty.md
 echo "--- best-of-8 ---" | tee -a logs/table_difficulty.md
-python molgrpo/compare_results.py outputs/eval_dn_t1_bo8.json outputs/eval_db_t1_bo8.json \
+python analysis/compare_results.py outputs/eval_dn_t1_bo8.json outputs/eval_db_t1_bo8.json \
   outputs/eval_dn_t2_bo8.json outputs/eval_db_t2_bo8.json \
   outputs/eval_dn_t3_bo8.json outputs/eval_db_t3_bo8.json \
   outputs/eval_dn_t4_bo8.json outputs/eval_db_t4_bo8.json 2>/dev/null | tee -a logs/table_difficulty.md

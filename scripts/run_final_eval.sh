@@ -26,9 +26,9 @@ for STYLE in none short structured gemini; do
 done
 
 echo "[$(date)] === GREEDY@1000 ===" | tee logs/final_table.md
-python -u molgrpo/compare_results.py outputs/final_none_greedy.json outputs/final_short_greedy.json outputs/final_structured_greedy.json outputs/final_gemini_greedy.json 2>/dev/null | tee -a logs/final_table.md
+python -u analysis/compare_results.py outputs/final_none_greedy.json outputs/final_short_greedy.json outputs/final_structured_greedy.json outputs/final_gemini_greedy.json 2>/dev/null | tee -a logs/final_table.md
 echo "[$(date)] === SAMPLE@1000 ===" | tee -a logs/final_table.md
-python -u molgrpo/compare_results.py outputs/final_none_sample.json outputs/final_short_sample.json outputs/final_structured_sample.json outputs/final_gemini_sample.json 2>/dev/null | tee -a logs/final_table.md
+python -u analysis/compare_results.py outputs/final_none_sample.json outputs/final_short_sample.json outputs/final_structured_sample.json outputs/final_gemini_sample.json 2>/dev/null | tee -a logs/final_table.md
 echo "[$(date)] === BEST-OF-8@300 ===" | tee -a logs/final_table.md
-python -u molgrpo/compare_results.py outputs/final_none_bo8.json outputs/final_short_bo8.json outputs/final_structured_bo8.json outputs/final_gemini_bo8.json 2>/dev/null | tee -a logs/final_table.md
+python -u analysis/compare_results.py outputs/final_none_bo8.json outputs/final_short_bo8.json outputs/final_structured_bo8.json outputs/final_gemini_bo8.json 2>/dev/null | tee -a logs/final_table.md
 echo "[$(date)] FINAL_EVAL_DONE" | tee -a logs/final_table.md

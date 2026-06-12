@@ -47,5 +47,5 @@ if [ -f data/cot_gemini.jsonl ]; then
 fi
 
 echo "[$(date)] === COMPARISON TABLE ==="
-python -u molgrpo/compare_results.py | tee logs/comparison_table.md
+python -u analysis/compare_results.py | tee logs/comparison_table.md
 echo "[$(date)] ALL_DONE"

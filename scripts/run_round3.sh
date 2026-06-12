@@ -73,7 +73,7 @@ curriculum 3 ${SFTN} &
 wait
 
 echo "=== ROUND3 (library_v3) greedy ===" | tee logs/table_round3.md
-python molgrpo/compare_results.py outputs/eval_r3_none_greedy.json outputs/eval_r3_budget_greedy.json outputs/eval_r3_budgetpr_greedy.json outputs/eval_r3_curric_greedy.json 2>/dev/null | tee -a logs/table_round3.md
+python analysis/compare_results.py outputs/eval_r3_none_greedy.json outputs/eval_r3_budget_greedy.json outputs/eval_r3_budgetpr_greedy.json outputs/eval_r3_curric_greedy.json 2>/dev/null | tee -a logs/table_round3.md
 echo "--- best-of-8 ---" | tee -a logs/table_round3.md
-python molgrpo/compare_results.py outputs/eval_r3_none_bo8.json outputs/eval_r3_budget_bo8.json outputs/eval_r3_budgetpr_bo8.json outputs/eval_r3_curric_bo8.json 2>/dev/null | tee -a logs/table_round3.md
+python analysis/compare_results.py outputs/eval_r3_none_bo8.json outputs/eval_r3_budget_bo8.json outputs/eval_r3_budgetpr_bo8.json outputs/eval_r3_curric_bo8.json 2>/dev/null | tee -a logs/table_round3.md
 echo "ROUND3_DONE $(date)" | tee -a logs/table_round3.md

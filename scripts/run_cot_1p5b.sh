@@ -49,7 +49,7 @@ wait
 
 for DEC in greedy sample bo8; do
   echo "=== ${DEC} ===" | tee -a logs/table_1p5b.md
-  python molgrpo/compare_results.py \
+  python analysis/compare_results.py \
     outputs/eval_none_${DEC}.json outputs/eval_short_${DEC}.json outputs/eval_structured_${DEC}.json \
     outputs/eval_gemini_${DEC}.json outputs/eval_constructive_${DEC}.json 2>/dev/null | tee -a logs/table_1p5b.md
 done

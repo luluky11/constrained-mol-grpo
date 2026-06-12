@@ -60,11 +60,11 @@ base_eval 2 &
 wait
 
 echo "=== v2 CoT 风格对照 greedy ===" | tee logs/table_cot_v2.md
-python molgrpo/compare_results.py outputs/eval_cv2_none_greedy.json outputs/eval_cv2_short_greedy.json \
+python analysis/compare_results.py outputs/eval_cv2_none_greedy.json outputs/eval_cv2_short_greedy.json \
   outputs/eval_cv2_structured_greedy.json outputs/eval_cv2_constructive_greedy.json \
   outputs/eval_cv2_budget_greedy.json outputs/eval_cv2_gemini_greedy.json outputs/eval_cv2_base_greedy.json 2>/dev/null | tee -a logs/table_cot_v2.md
 echo "--- best-of-8 ---" | tee -a logs/table_cot_v2.md
-python molgrpo/compare_results.py outputs/eval_cv2_none_bo8.json outputs/eval_cv2_short_bo8.json \
+python analysis/compare_results.py outputs/eval_cv2_none_bo8.json outputs/eval_cv2_short_bo8.json \
   outputs/eval_cv2_structured_bo8.json outputs/eval_cv2_constructive_bo8.json \
   outputs/eval_cv2_budget_bo8.json outputs/eval_cv2_gemini_bo8.json outputs/eval_cv2_base_bo8.json 2>/dev/null | tee -a logs/table_cot_v2.md
 echo "COT_V2_DONE $(date)" | tee -a logs/table_cot_v2.md

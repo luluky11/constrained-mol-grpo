@@ -14,6 +14,11 @@ ChEMBL 覆盖宽 MW（不像 MOSES 被卡在 250-350），适合做 all-real 库
 
 from __future__ import annotations
 
+import os as _os
+import sys as _sys
+
+_sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", "molgrpo"))
+
 import argparse
 import csv
 import gzip
