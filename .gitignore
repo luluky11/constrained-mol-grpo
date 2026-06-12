@@ -1,0 +1,28 @@
+# data & artifacts
+data/
+outputs/
+results/
+results_v100/
+logs/
+*.csv
+*.jsonl
+*.json
+
+# model weights
+*.pt
+*.bin
+*.safetensors
+*.ckpt
+checkpoint-*/
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# os / editor
+.DS_Store
+.idea/
+.vscode/

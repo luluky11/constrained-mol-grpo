@@ -1,0 +1,6 @@
+torch
+transformers==4.51.3
+trl==0.17.0
+datasets
+accelerate
+rdkit
